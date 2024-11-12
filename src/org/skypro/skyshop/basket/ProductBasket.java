@@ -3,6 +3,7 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
 import java.util.Arrays;
+import java.util.SortedMap;
 
 public class ProductBasket {
     private Product[] basket;
@@ -13,11 +14,11 @@ public class ProductBasket {
     }
 
     public void addProduct(String productName, int price) {
-        if (counter >= basket.length) {
-            throw new IllegalArgumentException("Невозможно добавить продукт");
-        }
         Product newProduct = new Product(productName, price);
         basket[counter++] = newProduct;
+        if (counter >= basket.length) {
+            throw new IndexOutOfBoundsException("Невозможно добавить продукт");
+        }
     }
 
     public int calculateBasketCost() {
