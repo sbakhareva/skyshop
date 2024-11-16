@@ -12,12 +12,15 @@ public class ProductBasket {
         this.basket = new Product[5];
     }
 
-    public void addProduct(String product, int price) {
-        Product newProduct = new Product(product, price);
-        basket[counter++] = newProduct;
-        if (counter > basket.length) {
+    public void addProduct(Product product) {
+        if (counter >= basket.length) {
             throw new IndexOutOfBoundsException("Невозможно добавить продукт");
         }
+        //Product product = new Product();
+        String productName = product.getProductName();
+        int price = product.getPrice();
+        basket[counter++] = product;
+        System.out.println(productName + ": " + price);
     }
 
     public int calculateBasketCost() {
@@ -48,9 +51,10 @@ public class ProductBasket {
         for (Product product : basket) {
             if (product != null && productName.equalsIgnoreCase(product.getProductName())) {
                 System.out.println("Этот товар есть в корзине");
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public void clearBasket() {
