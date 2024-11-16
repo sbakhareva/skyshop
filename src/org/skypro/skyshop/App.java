@@ -7,7 +7,7 @@ public class App {
     public static void main(String[] args) {
         ProductBasket basket = new ProductBasket();
 
-        basket.addProduct("Омлет с овощами", 150);
+        basket.addProduct("Омлет с ветчиной", 150);
         basket.addProduct("Молоко цельное", 98);
         basket.addProduct("Вафли ореховые", 75);
         basket.addProduct("Торт миндальный", 300);
