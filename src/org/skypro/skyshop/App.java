@@ -6,18 +6,24 @@ import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
+import java.util.Arrays;
+
 public class App {
     public static void main(String[] args) {
         ProductBasket basket = new ProductBasket();
 
-        basket.addProduct(new SimpleProduct("Омлет с ветчиной", 150)); // обычный продукт
-        basket.addProduct(new FixPriceProduct("Вафли ореховые")); // продукт с фиксированной ценой
-        basket.addProduct(new DiscountedProduct("Торт миндальный", 450, 40)); // уцененный продукт
+        Product simpleProduct = new SimpleProduct("Омлет с ветчиной", 150);
+        Product fixPriceProduct = new FixPriceProduct("Вафли ореховые");
+        Product discountedProduct = new DiscountedProduct("Торт миндальный", 450, 40);
+
+        basket.addProduct(simpleProduct); // обычный продукт
+        basket.addProduct(fixPriceProduct); // продукт с фиксированной ценой
+        basket.addProduct(discountedProduct); // уцененный продукт
+
+        basket.countSpecials();
 
         System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей");
         basket.printBasket();
-        basket.isSpecial();
-
 
         basket.isThereProduct("Творожный сырок"); // поиск товара, которого нет в корзине
         basket.isThereProduct("Омлет с ветчиной"); // поиск товара, который есть в корзине
@@ -27,7 +33,7 @@ public class App {
         System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей."); // сумма пустой корзины
         basket.isThereProduct("Молоко цельное"); // поиск товара в пустой корзине
 
-        ProductBasket basket1 = new ProductBasket();
+        final ProductBasket basket1 = new ProductBasket();
 
         basket1.addProduct(new SimpleProduct("Омлет с овощами", 150));
         basket1.addProduct(new SimpleProduct("Молоко цельное", 98));

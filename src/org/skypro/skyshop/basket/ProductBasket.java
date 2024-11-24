@@ -62,7 +62,7 @@ public class ProductBasket {
         Arrays.fill(basket, null);
     }
 
-    public void isSpecial(){
+    public void countSpecials() {
         int counter = 0;
         for (Product product : basket) {
             if (product != null && product.isSpecial()) {
