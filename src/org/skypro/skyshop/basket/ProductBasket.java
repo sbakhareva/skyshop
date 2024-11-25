@@ -61,5 +61,15 @@ public class ProductBasket {
         System.out.println("Очистка корзины!");
         Arrays.fill(basket, null);
     }
+
+    public void countSpecials() {
+        int counter = 0;
+        for (Product product : basket) {
+            if (product != null && product.isSpecial()) {
+                counter++;
+            }
+        }
+        System.out.println("Специальных товаров в корзине: " + counter);
+    }
 }
 
