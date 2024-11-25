@@ -1,16 +1,21 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.search.SearchEngine;
 
 import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
         ProductBasket basket = new ProductBasket();
+
+        Article article = new Article("Омлет с ветчиной", "Приготовлен из яиц и ветчины.");
+        System.out.println(article);
 
         Product simpleProduct = new SimpleProduct("Омлет с ветчиной", 150);
         Product fixPriceProduct = new FixPriceProduct("Вафли ореховые");
