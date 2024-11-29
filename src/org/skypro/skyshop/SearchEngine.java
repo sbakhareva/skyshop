@@ -20,17 +20,16 @@ public class SearchEngine {
     }
 
     public Searchable[] search(String searchTerm) {
-        Searchable[] results = new Searchable[5];
         int counter = 0;
-        for (Searchable result : results) {
-            if (result != null && result.getSearchTerm().contains(searchTerm)) {
-                results[counter++] = result;
-                if (counter >= results.length) {
+        for (Searchable object : array) {
+            if (object != null && object.getType().contains(searchTerm)) {
+                array[counter++] = object;
+                if (counter >= array.length) {
                     break;
                 }
             }
         }
-        return results;
+        return array;
     }
 
     public String toString() {

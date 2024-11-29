@@ -11,7 +11,6 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        ProductBasket basket = new ProductBasket();
         SearchEngine searchable = new SearchEngine(5);
 
         Article article = new Article("Омлет с ветчиной", "Приготовлен из яиц и ветчины."); // проверяю как работает добавление статьи
@@ -23,6 +22,11 @@ public class App {
         searchable.add(new FixPriceProduct("Крем для рук"));
         searchable.add(article);
         System.out.println(searchable);
+
+        System.out.println(Arrays.toString(searchable.search("Омлет")));
+        System.out.println(Arrays.toString(searchable.search("Яйца")));
+
+        ProductBasket basket = new ProductBasket();
 
         Product simpleProduct = new SimpleProduct("Омлет с ветчиной", 150);
         Product fixPriceProduct = new FixPriceProduct("Вафли ореховые");
@@ -44,5 +48,6 @@ public class App {
         basket.printBasket(); // печать пустой корзины
         System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей."); // сумма пустой корзины
         basket.isThereProduct("Молоко цельное"); // поиск товара в пустой корзине
+
     }
 }
