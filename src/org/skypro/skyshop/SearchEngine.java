@@ -22,7 +22,7 @@ public class SearchEngine {
     public Searchable[] search(String searchTerm) {
         int counter = 0;
         for (Searchable object : array) {
-            if (object != null && object.getType().contains(searchTerm)) {
+            if (object != null && object.getSearchTerm().contains(searchTerm)) {
                 array[counter++] = object;
                 if (counter >= array.length) {
                     break;
