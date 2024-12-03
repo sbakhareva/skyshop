@@ -58,7 +58,7 @@ public class SearchEngine {
             try {
                 throw new BestResultNotFound();
             } catch (BestResultNotFound e) {
-                throw new RuntimeException("По запросу \"" + search + "\" ничего не найдено.");
+                System.out.println("По запросу \"" + search + "\" ничего не найдено.");
             }
         }
         return objects;

@@ -1,5 +1,6 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.exceptions.BestResultNotFound;
 import org.skypro.skyshop.exceptions.IncorrectDiscountValueException;
 import org.skypro.skyshop.exceptions.IncorrectPriceValueException;
 import org.skypro.skyshop.product.Article;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
+        exceptions();
         searching();
 
     }
