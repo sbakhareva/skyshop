@@ -1,5 +1,7 @@
 package org.skypro.skyshop;
 
+import org.skypro.skyshop.exceptions.BestResultNotFound;
+
 import java.util.Arrays;
 
 public class SearchEngine {
@@ -31,6 +33,35 @@ public class SearchEngine {
             }
         }
         return results;
+    }
+
+    public Searchable[] getBestMatch(String search) {
+        Searchable[] objects = new Searchable[5];
+        int counter = 0;
+
+        for (Searchable object : array) {
+            if (object != null && counter < array.length) {
+                String string = object.getSearchTerm();
+
+                String substring = search;
+                int index = 0;
+                int substringIndex = string.indexOf(substring, index);
+
+                while (substringIndex != -1 && counter < array.length) {
+                    objects[counter++] = object;
+                    index = index + substring.length();
+                    substringIndex = string.indexOf(substring, index);
+                }
+            }
+        }
+        if (objects[0] == null) {
+            try {
+                throw new BestResultNotFound();
+            } catch (BestResultNotFound e) {
+                throw new RuntimeException("По запросу \"" + search + "\" ничего не найдено.");
+            }
+        }
+        return objects;
     }
 
     public String toString() {

@@ -1,13 +1,20 @@
 package org.skypro.skyshop.product;
 
+import org.skypro.skyshop.exceptions.IncorrectDiscountValueException;
+import org.skypro.skyshop.exceptions.IncorrectPriceValueException;
+
 public class DiscountedProduct extends Product {
     int basePrice;
     int discount;
 
-    public DiscountedProduct(String productName, int price, int discount) {
+    public DiscountedProduct(String productName, int price, int discount){
         super(productName);
-        this.basePrice = price;
-        this.discount = discount;
+        if (price <= 0 || (discount < 0 || discount > 100)) {
+            throw new IllegalArgumentException("Неверное значение цены и/или скидки!");
+        } else {
+            this.discount = discount;
+            this.basePrice = price;
+        }
     }
 
     @Override
