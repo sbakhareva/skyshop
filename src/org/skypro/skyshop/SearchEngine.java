@@ -3,6 +3,7 @@ package org.skypro.skyshop;
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 public class SearchEngine {
 
@@ -15,7 +16,7 @@ public class SearchEngine {
     public void add(Searchable object) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null) {
-                array [i] = object;
+                array[i] = object;
                 break;
             }
         }
@@ -35,15 +36,16 @@ public class SearchEngine {
         return results;
     }
 
-    public Searchable[] getBestMatch(String search) {
+    public Searchable getBestMatch(String search) throws BestResultNotFound {
         Searchable[] objects = new Searchable[5];
+        Searchable theBest = null;
         int counter = 0;
 
         for (Searchable object : array) {
             if (object != null && counter < array.length) {
-                String string = object.getSearchTerm();
+                String string = object.getSearchTerm().replace(" ", "").toLowerCase();
 
-                String substring = search;
+                String substring = search.replace(" ", "").toLowerCase();
                 int index = 0;
                 int substringIndex = string.indexOf(substring, index);
 
@@ -52,16 +54,13 @@ public class SearchEngine {
                     index = index + substring.length();
                     substringIndex = string.indexOf(substring, index);
                 }
+                theBest = objects[0];
             }
         }
         if (objects[0] == null) {
-            try {
-                throw new BestResultNotFound();
-            } catch (BestResultNotFound e) {
-                System.out.println("По запросу \"" + search + "\" ничего не найдено.");
-            }
+            throw new BestResultNotFound();
         }
-        return objects;
+        return theBest;
     }
 
     public String toString() {
