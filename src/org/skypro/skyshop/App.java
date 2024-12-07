@@ -12,44 +12,8 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        // exceptions();
+        exceptions();
         searching();
-        /*Searchable[] searchEngine = new Searchable[5]; // Создание массива для хранения объектов Searchable
-        searchEngine[0] = new SimpleProduct("ff", 17);
-        searchEngine[1] = new DiscountedProduct("eee", 50, 50);
-        searchEngine[2] = new FixPriceProduct("aaaaaaaafff");
-        searchEngine[3] = new Article("Rte", "bcd");
-        searchEngine[4] = new Article("Wqr", "pol");
-
-        String searchTerm = "f"; // Подстрока для поиска (можно изменить на нужную)
-        int countSubstringLast = 0; // Переменная для хранения предыдущего значения счетчика
-        int resultIndex = -1; // Индекс объекта Searchable с наибольшим количеством вхождений
-
-        for (int i = 0; i < searchEngine.length; i++) {
-            if (searchEngine[i] != null) {
-                String searchContent = searchEngine[i].getSearchTerm().toLowerCase().replace(" ", ""); // Приведение к нижнему регистру и удаление пробелов
-                int count = 0;
-                int fromIndex = 0;
-
-                while ((fromIndex = searchContent.indexOf(searchTerm.toLowerCase(), fromIndex)) != -1) {
-                    count++;
-                    fromIndex += searchTerm.length();
-                }
-
-                if (count > countSubstringLast) {
-                    countSubstringLast = count;
-                    resultIndex = i;
-                }
-            }
-        }
-
-        if (resultIndex != -1) {
-            System.out.println("Объект с наибольшим количеством вхождений подстроки: " + searchEngine[resultIndex]);
-        } else {
-            System.out.println("Подстрока не найдена в объектах Searchable.");
-        }
-
-         */
 
     }
 
