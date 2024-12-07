@@ -3,7 +3,7 @@ package org.skypro.skyshop;
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 
 import java.util.Arrays;
-import java.util.Locale;
+
 
 public class SearchEngine {
 
@@ -37,33 +37,35 @@ public class SearchEngine {
     }
 
     public Searchable getBestMatch(String search) throws BestResultNotFound {
-        Searchable[] objects = new Searchable[5];
-        Searchable theBest = null;
-        int counter = 0;
+        String substring = search.replace(" ", "").toLowerCase();
+        int countSubstringLast = 0;
+        int resultIndex = -1;
 
-        for (Searchable object : array) {
-            if (object != null && counter < array.length) {
-                String string = object.getSearchTerm().replace(" ", "").toLowerCase();
-
-                String substring = search.replace(" ", "").toLowerCase();
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != null) {
+                String text = array[i].getSearchTerm().replace(" ", "").toLowerCase();
+                int counter = 0;
                 int index = 0;
-                int substringIndex = string.indexOf(substring, index);
 
-                while (substringIndex != -1 && counter < array.length) {
-                    objects[counter++] = object;
+                while ((index = text.indexOf(substring, index)) != -1) {
+                    counter++;
                     index = index + substring.length();
-                    substringIndex = string.indexOf(substring, index);
                 }
-                theBest = objects[0];
+                if (counter > countSubstringLast) {
+                    countSubstringLast = counter;
+                    resultIndex = i;
+                }
             }
         }
-        if (objects[0] == null) {
-            throw new BestResultNotFound();
+        if (resultIndex != -1) {
+            System.out.println("Объект с наибольшим количеством вхождений: " + array[resultIndex]);
+        } else {
+            System.out.println("Подстрока не найдена в объектах Searchable.");
         }
-        return theBest;
+        return null;
     }
 
-    public String toString() {
-        return Arrays.toString(array);
-    }
+public String toString() {
+    return Arrays.toString(array);
+}
 }
