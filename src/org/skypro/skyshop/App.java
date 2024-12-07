@@ -29,12 +29,12 @@ public class App {
         searchable.add(new FixPriceProduct("Крем для рук"));
 
         try {
-            searchable.getBestMatch("а");
+            System.out.println(searchable.getBestMatch("к"));
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
         try {
-            searchable.getBestMatch("Молоко");
+            System.out.println(searchable.getBestMatch("Молоко"));
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }

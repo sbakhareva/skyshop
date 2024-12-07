@@ -57,12 +57,10 @@ public class SearchEngine {
                 }
             }
         }
-        if (resultIndex != -1) {
-            System.out.println("Объект с наибольшим количеством вхождений: " + array[resultIndex]);
-        } else {
+        if (resultIndex == -1) {
             throw new BestResultNotFound();
         }
-        return null;
+        return array[resultIndex];
     }
 
 public String toString() {
