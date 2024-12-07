@@ -60,7 +60,7 @@ public class SearchEngine {
         if (resultIndex != -1) {
             System.out.println("Объект с наибольшим количеством вхождений: " + array[resultIndex]);
         } else {
-            System.out.println("Подстрока не найдена в объектах Searchable.");
+            throw new BestResultNotFound();
         }
         return null;
     }
