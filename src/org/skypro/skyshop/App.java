@@ -29,7 +29,7 @@ public class App {
         searchable.add(new FixPriceProduct("Крем для рук"));
 
         try {
-            System.out.println(searchable.getBestMatch("к"));
+            System.out.println(searchable.getBestMatch("я"));
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
