@@ -8,26 +8,28 @@ import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        exceptions();
-        searching();
+        inheritance();
 
     }
 
     public static void searching() {
-        SearchEngine searchable = new SearchEngine(5);
+        List<SearchEngine> searchable = new ArrayList<>();
 
         Article article = new Article("Омлет с ветчиной", "Приготовлен из яиц и ветчины."); // проверяю как работает добавление статьи
 
-        searchable.add(article);
-        searchable.add(new Article("Заголовок", "Текст"));
-        searchable.add(new SimpleProduct("Сметана сметана", 120));
-        searchable.add(new DiscountedProduct("Сметана", 98, 20));
-        searchable.add(new FixPriceProduct("Крем для рук"));
+        searchable.addItem(article);
+        searchable.addItem(new Article("Заголовок", "Текст"));
+        searchable.addItem(new SimpleProduct("Сметана сметана", 120));
+        searchable.addItem(new DiscountedProduct("Сметана", 98, 20));
+        searchable.addItem(new FixPriceProduct("Крем для рук"));
 
+        searchable.search("Я");
         try {
             System.out.println(searchable.getBestMatch("я"));
         } catch (BestResultNotFound e) {
@@ -41,7 +43,7 @@ public class App {
     }
 
     public static void inheritance() {
-        ProductBasket basket = new ProductBasket();
+        List<ProductBasket> basket = new ArrayList<>();
 
         Product simpleProduct = new SimpleProduct("Омлет с ветчиной", 150);
         Product fixPriceProduct = new FixPriceProduct("Вафли ореховые");
@@ -50,6 +52,7 @@ public class App {
         basket.addProduct(simpleProduct); // обычный продукт
         basket.addProduct(fixPriceProduct); // продукт с фиксированной ценой
         basket.addProduct(discountedProduct); // уцененный продукт
+        basket.delete("Омлет");
 
         basket.countSpecials();
 

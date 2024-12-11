@@ -2,33 +2,34 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SearchEngine {
 
-    Searchable[] array;
+    List<Searchable> array;
 
-    public SearchEngine(int size) {
-        this.array = new Searchable[size];
+    public SearchEngine() {
+        this.array = new ArrayList<>();
     }
 
-    public void add(Searchable object) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == null) {
-                array[i] = object;
+    public void addItem(Searchable object) {
+        for (int i = 0; i < array.size() - 1; i++) {
+            if (array.get(i) == null) {
+                array.set(i, object);
                 break;
             }
         }
     }
 
-    public Searchable[] search(String searchTerm) {
-        Searchable[] results = new Searchable[5];
+    public List<Searchable> search(String searchTerm) {
+        List<Searchable> results = new ArrayList<>();
         int counter = 0;
         for (Searchable object : array) {
             if (object != null && object.getSearchTerm().contains(searchTerm)) {
-                results[counter++] = object;
-                if (counter >= array.length) {
+                results.set(counter++, object);
+                if (counter >= array.size()) {
                     break;
                 }
             }
@@ -41,9 +42,9 @@ public class SearchEngine {
         int countSubstringLast = 0;
         int resultIndex = -1;
 
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != null) {
-                String text = array[i].getSearchTerm().replace(" ", "").toLowerCase();
+        for (int i = 0; i < array.size(); i++) {
+            if (array.get(i) != null) {
+                String text = array.get(i).getSearchTerm().replace(" ", "").toLowerCase();
                 int counter = 0;
                 int index = 0;
 
@@ -60,10 +61,10 @@ public class SearchEngine {
         if (resultIndex == -1) {
             throw new BestResultNotFound();
         }
-        return array[resultIndex];
+        return array.get(resultIndex);
     }
 
 public String toString() {
-    return Arrays.toString(array);
+    return array.toString();
 }
 }
