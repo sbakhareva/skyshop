@@ -9,7 +9,6 @@ import java.util.List;
 
 public class ProductBasket {
     List<Product> basket;
-    private int counter;
 
     public ProductBasket() {
         this.basket = new ArrayList<>();
@@ -34,12 +33,10 @@ public class ProductBasket {
 
     public void printBasket() {
         int sum = 0;
-        counter = 0;
         for (Product product : basket) {
-            counter++;
             System.out.println(product);
             sum += product.getPrice();
-            if (counter == 0) {
+            if (basket.isEmpty()) {
                 System.out.println("Корзина пуста!");
                 break;
             }
@@ -49,7 +46,7 @@ public class ProductBasket {
 
     public boolean isThereProduct(String productName) {
         for (Product product : basket) {
-            if (product != null && productName.equalsIgnoreCase(product.getProductName())) {
+            if (productName.replace(" ", "").equalsIgnoreCase(product.getProductName().replace(" ", ""))) {
                 System.out.println("Этот товар есть в корзине");
                 return true;
             }
@@ -65,7 +62,7 @@ public class ProductBasket {
     public void countSpecials() {
         int counter = 0;
         for (Product product : basket) {
-            if (product != null && product.isSpecial()) {
+            if (product.isSpecial()) {
                 counter++;
             }
         }

@@ -15,7 +15,8 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         inheritance();
-        // searching();
+        searching();
+        exceptions();
     }
 
     public static void searching() {
@@ -54,12 +55,12 @@ public class App {
         basket.addProduct(simpleProduct); // обычный продукт
         basket.addProduct(fixPriceProduct); // продукт с фиксированной ценой
         basket.addProduct(discountedProduct); // уцененный продукт
-        basket.deleteProduct("Омлет");
+        // basket.deleteProduct("Омлет");
 
         basket.countSpecials();
 
         System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей");
-        // basket.printBasket();
+        basket.printBasket();
 
         basket.isThereProduct("Творожный сырок"); // поиск товара, которого нет в корзине
         basket.isThereProduct("Омлет с ветчиной"); // поиск товара, который есть в корзине
