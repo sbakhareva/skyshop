@@ -24,9 +24,7 @@ public class ProductBasket {
     public int calculateBasketCost() {
         int sum = 0;
         for (Product product : basket) {
-            if (product != null) {
-                sum += product.getPrice();
-            }
+            sum += product.getPrice();
         }
         return sum;
     }
@@ -72,12 +70,12 @@ public class ProductBasket {
     public List<Product> deleteProduct(String name) {
         List<Product> deleted = new ArrayList<>();
         Iterator<Product> iterator = basket.iterator();
-            while (iterator.hasNext()) {
-                Product product = iterator.next();
-                if (product.getProductName().toLowerCase().replace(" ", "").contains(name.toLowerCase().replace(" ", ""))) {
-                    deleted.add(product);
-                    basket.remove(product);
-                }
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getProductName().toLowerCase().replace(" ", "").contains(name.toLowerCase().replace(" ", ""))) {
+                deleted.add(product);
+                basket.remove(product);
+            }
         }
         if (deleted.isEmpty()) {
             System.out.println("Список удаленных продуктов пуст.");
