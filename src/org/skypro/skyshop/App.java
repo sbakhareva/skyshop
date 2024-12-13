@@ -55,7 +55,7 @@ public class App {
         basket.addProduct(simpleProduct); // обычный продукт
         basket.addProduct(fixPriceProduct); // продукт с фиксированной ценой
         basket.addProduct(discountedProduct); // уцененный продукт
-        // basket.deleteProduct("Омлет");
+        basket.deleteProduct("Омлет");
 
         basket.countSpecials();
 
