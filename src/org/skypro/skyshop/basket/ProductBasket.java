@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ProductBasket {
-    private final List<Product> basket;
+    List<Product> basket;
     private int counter;
 
     public ProductBasket() {
@@ -18,7 +18,7 @@ public class ProductBasket {
     public void addProduct(Product product) {
         String productName = product.getProductName();
         int price = product.getPrice();
-        basket.add(counter++, product);
+        basket.add(product);
         System.out.println(productName + ": " + price);
     }
 
@@ -36,11 +36,10 @@ public class ProductBasket {
         int sum = 0;
         counter = 0;
         for (Product product : basket) {
-            if (product != null) {
-                counter++;
-                System.out.println(product);
-                sum += product.getPrice();
-            } else if (counter == 0) {
+            counter++;
+            System.out.println(product);
+            sum += product.getPrice();
+            if (counter == 0) {
                 System.out.println("Корзина пуста!");
                 break;
             }
@@ -73,22 +72,22 @@ public class ProductBasket {
         System.out.println("Специальных товаров в корзине: " + counter);
     }
 
-    public List delete(String name) {
-        Iterator<Product> iterator = basket.iterator();
+    public List<Product> deleteProduct(String name) {
         List<Product> deleted = new ArrayList<>();
-        while (iterator.hasNext()) {
-            Product product = iterator.next();
-            if (product.getProductName().toLowerCase().replace(" ", "").contains(name.toLowerCase().replace(" ", ""))) {
-                deleted.add(product);
-                basket.remove(product);
-            }
+        Iterator<Product> iterator = basket.iterator();
+            while (iterator.hasNext()) {
+                Product product = iterator.next();
+                if (product.getProductName().toLowerCase().replace(" ", "").contains(name.toLowerCase().replace(" ", ""))) {
+                    deleted.add(product);
+                    basket.remove(product);
+                }
         }
         if (deleted.isEmpty()) {
             System.out.println("Список удаленных продуктов пуст.");
         } else {
-            return deleted;
+            System.out.println(deleted);
         }
-        return null;
+        return deleted;
     }
 }
 

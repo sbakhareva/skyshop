@@ -8,30 +8,21 @@ import java.util.List;
 
 public class SearchEngine {
 
-    List<Searchable> array;
+    List<Searchable> searchList;
 
     public SearchEngine() {
-        this.array = new ArrayList<>();
+        this.searchList = new ArrayList<>();
     }
 
     public void addItem(Searchable object) {
-        for (int i = 0; i < array.size() - 1; i++) {
-            if (array.get(i) == null) {
-                array.set(i, object);
-                break;
-            }
-        }
+        searchList.add(object);
     }
 
     public List<Searchable> search(String searchTerm) {
         List<Searchable> results = new ArrayList<>();
-        int counter = 0;
-        for (Searchable object : array) {
-            if (object != null && object.getSearchTerm().contains(searchTerm)) {
-                results.set(counter++, object);
-                if (counter >= array.size()) {
-                    break;
-                }
+        for (Searchable object : searchList) {
+            if (object.getSearchTerm().contains(searchTerm)) {
+                results.add(object);
             }
         }
         return results;
@@ -42,9 +33,8 @@ public class SearchEngine {
         int countSubstringLast = 0;
         int resultIndex = -1;
 
-        for (int i = 0; i < array.size(); i++) {
-            if (array.get(i) != null) {
-                String text = array.get(i).getSearchTerm().replace(" ", "").toLowerCase();
+        for (int i = 0; i < searchList.size(); i++) {
+                String text = searchList.get(i).getSearchTerm().replace(" ", "").toLowerCase();
                 int counter = 0;
                 int index = 0;
 
@@ -56,15 +46,14 @@ public class SearchEngine {
                     countSubstringLast = counter;
                     resultIndex = i;
                 }
-            }
         }
         if (resultIndex == -1) {
             throw new BestResultNotFound();
         }
-        return array.get(resultIndex);
+        return searchList.get(resultIndex);
     }
 
-public String toString() {
-    return array.toString();
-}
+    public String toString() {
+        return searchList.toString();
+    }
 }

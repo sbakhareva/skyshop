@@ -15,11 +15,12 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         inheritance();
-
+        // searching();
     }
 
     public static void searching() {
-        List<SearchEngine> searchable = new ArrayList<>();
+        System.out.println("\n" + "Поиск по корзине" + "\n");
+        SearchEngine searchable = new SearchEngine();
 
         Article article = new Article("Омлет с ветчиной", "Приготовлен из яиц и ветчины."); // проверяю как работает добавление статьи
 
@@ -29,9 +30,9 @@ public class App {
         searchable.addItem(new DiscountedProduct("Сметана", 98, 20));
         searchable.addItem(new FixPriceProduct("Крем для рук"));
 
-        searchable.search("Я");
+        System.out.println(searchable.search("г")); // вывожу весь список подходящи результатов
         try {
-            System.out.println(searchable.getBestMatch("я"));
+            System.out.println(searchable.getBestMatch("а")); // лучшее совпадение
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
@@ -43,7 +44,8 @@ public class App {
     }
 
     public static void inheritance() {
-        List<ProductBasket> basket = new ArrayList<>();
+        System.out.println("\n" + "Наследование" + "\n");
+        ProductBasket basket = new ProductBasket();
 
         Product simpleProduct = new SimpleProduct("Омлет с ветчиной", 150);
         Product fixPriceProduct = new FixPriceProduct("Вафли ореховые");
@@ -52,12 +54,12 @@ public class App {
         basket.addProduct(simpleProduct); // обычный продукт
         basket.addProduct(fixPriceProduct); // продукт с фиксированной ценой
         basket.addProduct(discountedProduct); // уцененный продукт
-        basket.delete("Омлет");
+        basket.deleteProduct("Омлет");
 
         basket.countSpecials();
 
         System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей");
-        basket.printBasket();
+        // basket.printBasket();
 
         basket.isThereProduct("Творожный сырок"); // поиск товара, которого нет в корзине
         basket.isThereProduct("Омлет с ветчиной"); // поиск товара, который есть в корзине
@@ -69,6 +71,7 @@ public class App {
     }
 
     public static void exceptions() {
+        System.out.println("\n" + "Исключения" + "\n");
         try {
             Product product1 = new SimpleProduct("        ", 50);
             System.out.println(product1);
