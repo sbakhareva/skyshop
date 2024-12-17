@@ -73,7 +73,7 @@ public class ProductBasket {
             Product nextProduct = basketIterator.next();
             if (nextProduct.getProductName().toLowerCase().replace(" ", "").contains(name.toLowerCase().replace(" ", ""))) {
                 deleted.add(nextProduct);
-                basket.remove(nextProduct);
+                basketIterator.remove();
             }
         }
         if (deleted.isEmpty()) {

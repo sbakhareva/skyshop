@@ -56,11 +56,11 @@ public class App {
         basket.addProduct(fixPriceProduct); // продукт с фиксированной ценой
         basket.addProduct(discountedProduct); // уцененный продукт
         basket.deleteProduct("Омлет");
+        basket.printBasket();
 
         basket.countSpecials();
 
         System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей");
-        basket.printBasket();
 
         basket.isThereProduct("Творожный сырок"); // поиск товара, которого нет в корзине
         basket.isThereProduct("Омлет с ветчиной"); // поиск товара, который есть в корзине
