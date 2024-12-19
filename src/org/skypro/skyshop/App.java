@@ -14,8 +14,8 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        inheritance();
-        //searching();
+        //inheritance();
+        searching();
         //exceptions();
     }
 
@@ -30,8 +30,11 @@ public class App {
         searchable.addItem(new SimpleProduct("Сметана сметана", 120));
         searchable.addItem(new DiscountedProduct("Сметана", 98, 20));
         searchable.addItem(new FixPriceProduct("Крем для рук"));
-
-        System.out.println(searchable.search("г")); // вывожу весь список подходящи результатов
+        searchable.addItem(new SimpleProduct("Варенье вишневое", 75));
+        searchable.addItem(new DiscountedProduct("Пирог с малиной", 300, 20));
+        searchable.addItem(new Article("Статья про баклажаны", "Описание баклажанов"));
+        System.out.println(searchable.search("П")); // вывожу весь список подходящи результатов
+        /*
         try {
             System.out.println(searchable.getBestMatch("а")); // лучшее совпадение
         } catch (BestResultNotFound e) {
@@ -42,6 +45,8 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
+
+         */
     }
 
     public static void inheritance() {

@@ -1,9 +1,9 @@
 package org.skypro.skyshop;
 
+import com.sun.source.tree.Tree;
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class SearchEngine {
@@ -18,11 +18,14 @@ public class SearchEngine {
         searchList.add(object);
     }
 
-    public List<Searchable> search(String searchTerm) {
-        List<Searchable> results = new ArrayList<>();
-        for (Searchable object : searchList) {
-            if (object.getSearchTerm().contains(searchTerm)) {
-                results.add(object);
+    public Map<String, Searchable> search(String searchTerm) {
+        Map<String, Searchable> results = new TreeMap<>();
+        Iterator<Searchable> searchlistIterator = searchList.iterator();
+        while (searchlistIterator.hasNext()) {
+            Searchable object = searchlistIterator.next();
+            if (object.getSearchTerm().toLowerCase().replace(" ", "").
+                    contains(searchTerm.toLowerCase().replace(" ", ""))) {
+                results.put(object.getObjName(), object);
             }
         }
         return results;
