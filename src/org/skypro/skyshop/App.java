@@ -15,8 +15,8 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         inheritance();
-        searching();
-        exceptions();
+        //searching();
+        //exceptions();
     }
 
     public static void searching() {
@@ -55,7 +55,8 @@ public class App {
         basket.addProduct(simpleProduct); // обычный продукт
         basket.addProduct(fixPriceProduct); // продукт с фиксированной ценой
         basket.addProduct(discountedProduct); // уцененный продукт
-        basket.deleteProduct("Омлет");
+        basket.printBasket();
+        basket.deleteProduct("вафли");
         basket.printBasket();
 
         basket.countSpecials();
