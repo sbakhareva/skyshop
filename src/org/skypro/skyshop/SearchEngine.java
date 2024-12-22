@@ -37,18 +37,18 @@ public class SearchEngine {
         int resultIndex = -1;
 
         for (int i = 0; i < searchList.size(); i++) {
-                String text = searchList.get(i).getSearchTerm().replace(" ", "").toLowerCase();
-                int counter = 0;
-                int index = 0;
+            String text = searchList.get(i).getSearchTerm().replace(" ", "").toLowerCase();
+            int counter = 0;
+            int index = 0;
 
-                while ((index = text.indexOf(substring, index)) != -1) {
-                    counter++;
-                    index = index + substring.length();
-                }
-                if (counter > countSubstringLast) {
-                    countSubstringLast = counter;
-                    resultIndex = i;
-                }
+            while ((index = text.indexOf(substring, index)) != -1) {
+                counter++;
+                index = index + substring.length();
+            }
+            if (counter > countSubstringLast) {
+                countSubstringLast = counter;
+                resultIndex = i;
+            }
         }
         if (resultIndex == -1) {
             throw new BestResultNotFound();
