@@ -8,24 +8,24 @@ import java.util.*;
 
 public class SearchEngine {
 
-    List<Searchable> searchList;
+    Set<Searchable> searchList;
 
     public SearchEngine() {
-        this.searchList = new ArrayList<>();
+        this.searchList = new HashSet<>();
     }
 
     public void addItem(Searchable object) {
         searchList.add(object);
     }
 
-    public Map<String, Searchable> search(String searchTerm) {
-        Map<String, Searchable> results = new TreeMap<>();
+    public Set<Searchable> search(String searchTerm) {
+        Set<Searchable> results = new TreeSet<>();
         Iterator<Searchable> searchlistIterator = searchList.iterator();
         while (searchlistIterator.hasNext()) {
             Searchable object = searchlistIterator.next();
             if (object.getSearchTerm().toLowerCase().replace(" ", "").
                     contains(searchTerm.toLowerCase().replace(" ", ""))) {
-                results.put(object.getObjName(), object);
+                results.add(object);
             }
         }
         return results;

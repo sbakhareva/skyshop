@@ -33,10 +33,10 @@ public class App {
         searchable.addItem(new SimpleProduct("Варенье вишневое", 75));
         searchable.addItem(new DiscountedProduct("Пирог с малиной", 300, 20));
         searchable.addItem(new Article("Статья про баклажаны", "Описание баклажанов"));
-        System.out.println(searchable.search("П")); // вывожу весь список подходящи результатов
-        /*
+        System.out.println(searchable.search("омлет")); // вывожу весь список подходящи результатов
+
         try {
-            System.out.println(searchable.getBestMatch("а")); // лучшее совпадение
+            System.out.println(searchable.getBestMatch("е")); // лучшее совпадение
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
@@ -45,8 +45,6 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
-
-         */
     }
 
     public static void inheritance() {
