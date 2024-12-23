@@ -1,7 +1,5 @@
 package org.skypro.skyshop.product;
-
 import org.skypro.skyshop.Searchable;
-
 import java.util.Objects;
 
 public abstract class Product implements Searchable {
@@ -42,8 +40,10 @@ public abstract class Product implements Searchable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Product product = (Product) o;
         return Objects.equals(productName, product.productName);
     }

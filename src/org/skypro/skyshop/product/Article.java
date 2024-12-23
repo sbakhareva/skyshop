@@ -43,14 +43,16 @@ public class Article implements Searchable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Article article = (Article) o;
-        return Objects.equals(title, article.title) && Objects.equals(text, article.text);
+        return Objects.equals(title, article.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, text);
+        return Objects.hash(title);
     }
 }

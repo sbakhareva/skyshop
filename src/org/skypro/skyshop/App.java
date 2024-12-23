@@ -23,20 +23,19 @@ public class App {
         System.out.println("\n" + "Поиск по корзине" + "\n");
         SearchEngine searchable = new SearchEngine();
 
-        Article article = new Article("Омлет с ветчиной", "Приготовлен из яиц и ветчины."); // проверяю как работает добавление статьи
-
-        searchable.addItem(article);
+        searchable.addItem(new Article("Омлет с ветчиной", "Приготовлен из яиц и ветчины."));
         searchable.addItem(new Article("Заголовок", "Текст"));
-        searchable.addItem(new SimpleProduct("Сметана сметана", 120));
+        searchable.addItem(new SimpleProduct("Творог", 120));
         searchable.addItem(new DiscountedProduct("Сметана", 98, 20));
         searchable.addItem(new FixPriceProduct("Крем для рук"));
         searchable.addItem(new SimpleProduct("Варенье вишневое", 75));
-        searchable.addItem(new DiscountedProduct("Пирог с малиной", 300, 20));
+        searchable.addItem(new DiscountedProduct("Пппирог с малиной", 300, 20));
         searchable.addItem(new Article("Статья про баклажаны", "Описание баклажанов"));
-        System.out.println(searchable.search("омлет")); // вывожу весь список подходящи результатов
+        //System.out.println(searchable);
+        System.out.println(searchable.search("а")); // вывожу весь список подходящи результатов
 
         try {
-            System.out.println(searchable.getBestMatch("е")); // лучшее совпадение
+            System.out.println(searchable.getBestMatch("п")); // лучшее совпадение
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }

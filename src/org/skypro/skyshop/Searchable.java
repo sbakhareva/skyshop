@@ -1,13 +1,15 @@
 package org.skypro.skyshop;
 
+import java.util.Comparator;
+
 public interface Searchable {
-        String getSearchTerm();
+    String getSearchTerm();
 
-        String getType();
+    String getType();
 
-        String getObjName();
+    String getObjName();
 
-        default String getStringRepresentation() {
-            return  "Объект " + getObjName() + " типа " + getType();
-        }
+    default String getStringRepresentation() {
+        return "Объект " + getObjName() + " типа " + getType();
     }
+}
