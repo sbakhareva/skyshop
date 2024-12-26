@@ -16,14 +16,7 @@ public class SearchEngine {
     }
 
     public TreeSet<Searchable> search(String searchTerm) {
-        TreeSet<Searchable> results = new TreeSet<>(new Comparator<Searchable>() {
-            @Override
-            public int compare(Searchable o1, Searchable o2) {
-                int compareLength = Integer.compare(o2.getObjName().length(), o1.getObjName().length());
-                if (compareLength != 0) return compareLength;
-                else return o1.getObjName().compareTo(o2.getObjName());
-            }
-        });
+        TreeSet<Searchable> results = new TreeSet<>(new SearchableComparator());
         for (Searchable object : searchList) {
             if (object.getSearchTerm().toLowerCase().replace(" ", "").
                     contains(searchTerm.toLowerCase().replace(" ", ""))) {
