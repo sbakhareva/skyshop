@@ -33,35 +33,6 @@ public class SearchEngine {
 
         Iterator<Searchable> searchlistIterator = searchList.iterator();
         while (searchlistIterator.hasNext()) {
-            for (int i = 0; i < searchList.size(); i++) {
-                Searchable searchable = searchlistIterator.next();
-                String text = searchable.getSearchTerm().replace(" ", "").toLowerCase();
-                int counter = 0;
-                int index = 0;
-
-                while ((index = text.indexOf(substring, index)) != -1) {
-                    counter++;
-                    index = index + substring.length();
-                }
-                if (counter > countSubstringLast) {
-                    countSubstringLast = counter;
-                    result = searchable;
-                }
-            }
-            if (result == null) {
-                throw new BestResultNotFound();
-            }
-        }
-        return result;
-    }
-
-    public Searchable getBestMatchV2(String search) throws BestResultNotFound {
-        String substring = search.replace(" ", "").toLowerCase();
-        int countSubstringLast = 0;
-        Searchable result = null;
-
-        Iterator<Searchable> searchlistIterator = searchList.iterator();
-        while (searchlistIterator.hasNext()) {
                 Searchable searchable = searchlistIterator.next();
                 String text = searchable.getSearchTerm().replace(" ", "").toLowerCase();
                 int counter = 0;

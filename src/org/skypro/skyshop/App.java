@@ -12,10 +12,6 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println(new TreeSet<>(){{
-            add(new SimpleProduct("Омлет с ветчиной", 70));
-        }});
-
         //inheritance();
         searching();
         //exceptions();
@@ -37,12 +33,12 @@ public class App {
         System.out.println(searchable.search("а")); // вывожу весь список подходящи результатов
 
         try {
-            System.out.println(searchable.getBestMatchV2("п")); // лучшее совпадение
+            System.out.println(searchable.getBestMatch("п")); // лучшее совпадение
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
         try {
-            System.out.println(searchable.getBestMatchV2("Молоко"));
+            System.out.println(searchable.getBestMatch("Молоко"));
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
