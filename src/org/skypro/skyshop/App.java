@@ -12,8 +12,8 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-        //inheritance();
-        searching();
+        inheritance();
+        //searching();
         //exceptions();
     }
 

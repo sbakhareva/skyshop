@@ -31,11 +31,14 @@ public class ProductBasket {
         return sum;
     }
 
+    public int calculateBasketCostV2() {
+        int sum = 0;
+        return sum;
+    }
+
     public void printBasket() {
-        System.out.println("\nТовары в корзине: ");
-        for (Map.Entry<String, List<Product>> m : basket.entrySet()) {
-            System.out.println(m.getValue());
-        }
+        basket.values().stream().flatMap(Collection::stream)
+                .forEach(System.out::println);
     }
 
     public boolean isThereProduct(String productName) {
