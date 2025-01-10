@@ -1,6 +1,9 @@
 package org.skypro.skyshop;
 import org.skypro.skyshop.exceptions.BestResultNotFound;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 
 public class SearchEngine {
@@ -25,6 +28,15 @@ public class SearchEngine {
         }
         return results;
     }
+
+    public Set<Searchable> searchV2(String searchTerm) {
+        Set<Searchable> results = searchList.stream()
+                .filter(searchable -> searchable.getSearchTerm().toLowerCase().replace(" ", "")
+                        .contains(searchTerm.toLowerCase().replace(" ", "")))
+                .collect(Collectors.toCollection((() -> new TreeSet<>(new SearchableComparator()))));
+        return results;
+    }
+
 
     public Searchable getBestMatch(String search) throws BestResultNotFound {
         String substring = search.replace(" ", "").toLowerCase();
