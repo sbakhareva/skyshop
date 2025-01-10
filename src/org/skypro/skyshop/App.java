@@ -59,7 +59,7 @@ public class App {
         basket.deleteProduct("вафли");
         basket.printBasket();
 
-        basket.countSpecials();
+        basket.countSpecialsV2();
 
         System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей");
 

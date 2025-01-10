@@ -68,6 +68,13 @@ public class ProductBasket {
         System.out.println("\nСпециальных товаров в корзине: " + counter);
     }
 
+    public void countSpecialsV2() {
+        int specials = Math.toIntExact(basket.values().stream().flatMap(Collection::stream)
+                .filter(Product::isSpecial)
+                .count());
+        System.out.println("\nСпециальных товаров в корзине: " + specials);
+    }
+
     public List<Product> deleteProduct(String name) {
         List<Product> deleted = new ArrayList<>();
 
