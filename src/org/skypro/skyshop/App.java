@@ -8,9 +8,7 @@ import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
@@ -23,20 +21,19 @@ public class App {
         System.out.println("\n" + "Поиск по корзине" + "\n");
         SearchEngine searchable = new SearchEngine();
 
-        Article article = new Article("Омлет с ветчиной", "Приготовлен из яиц и ветчины."); // проверяю как работает добавление статьи
-
-        searchable.addItem(article);
+        searchable.addItem(new Article("Омлет с ветчиной", "Приготовлен из яиц и ветчины."));
         searchable.addItem(new Article("Заголовок", "Текст"));
-        searchable.addItem(new SimpleProduct("Сметана сметана", 120));
+        searchable.addItem(new SimpleProduct("Творог", 120));
         searchable.addItem(new DiscountedProduct("Сметана", 98, 20));
         searchable.addItem(new FixPriceProduct("Крем для рук"));
         searchable.addItem(new SimpleProduct("Варенье вишневое", 75));
-        searchable.addItem(new DiscountedProduct("Пирог с малиной", 300, 20));
+        searchable.addItem(new DiscountedProduct("Пппирог с малиной", 300, 20));
         searchable.addItem(new Article("Статья про баклажаны", "Описание баклажанов"));
-        System.out.println(searchable.search("П")); // вывожу весь список подходящи результатов
-        /*
+
+        System.out.println(searchable.search("а")); // вывожу весь список подходящи результатов
+
         try {
-            System.out.println(searchable.getBestMatch("а")); // лучшее совпадение
+            System.out.println(searchable.getBestMatch("п")); // лучшее совпадение
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
@@ -45,8 +42,6 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
-
-         */
     }
 
     public static void inheritance() {
