@@ -3,6 +3,7 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductBasket {
     Map<String, List<Product>> basket;
@@ -19,20 +20,11 @@ public class ProductBasket {
         basket.put(productName, products);
         System.out.println(productName + ": " + price);
     }
-
     public int calculateBasketCost() {
-        int sum = 0;
-        for (List<Product> m : basket.values()) {
-            for (int i = 0; i < m.size(); i++) {
-                int price = m.get(i).getPrice();
-                sum += price;
-            }
-        }
-        return sum;
-    }
-
-    public int calculateBasketCostV2() {
-        int sum = 0;
+        int sum = basket.values().stream().flatMap(Collection::stream)
+                .mapToInt(Product::getPrice)
+                .sum();
+        System.out.println("Общая сумма корзины: " + sum);
         return sum;
     }
 
@@ -42,7 +34,9 @@ public class ProductBasket {
     }
 
     public boolean isThereProduct(String productName) {
-        if (basket.containsKey(productName)) {
+        if (basket.isEmpty()) {
+            System.out.println("Корзина пуста!");
+        } else if (basket.containsKey(productName)) {
             System.out.println("\nТовар '" + productName + "' есть в корзине.");
             return true;
         } else {
@@ -56,7 +50,7 @@ public class ProductBasket {
         basket.clear();
     }
 
-    public void countSpecialsV2() {
+    public void countSpecials() {
         int specials = Math.toIntExact(basket.values().stream().flatMap(Collection::stream)
                 .filter(Product::isSpecial)
                 .count());
@@ -83,9 +77,18 @@ public class ProductBasket {
         if (deleted.isEmpty()) {
             System.out.println("Список удаленных продуктов пуст.");
         } else {
-            System.out.println("\nПродукты удалены :");
+            System.out.println("\nПродукты удалены: ");
             System.out.println(deleted);
         }
+        return deleted;
+    }
+
+    public List<Product> deleteProductV2(String name) {
+        List<Product> deleted = basket.values().stream().flatMap(Collection::stream)
+                .filter(product -> product.getProductName().toLowerCase().replace(" ", "")
+                        .contains(name.toLowerCase().replace(" ", "")))
+                .collect(Collectors.toCollection((ArrayList::new)));
+        System.out.println("Продукты удалены: \n" + deleted);
         return deleted;
     }
 }

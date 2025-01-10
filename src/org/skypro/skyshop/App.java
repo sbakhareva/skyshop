@@ -56,19 +56,18 @@ public class App {
         basket.addProduct(fixPriceProduct); // продукт с фиксированной ценой
         basket.addProduct(discountedProduct); // уцененный продукт
         basket.printBasket();
+        basket.calculateBasketCost();
+        basket.countSpecials();
         basket.deleteProduct("вафли");
+        //basket.deleteProductV2("омлет");
         basket.printBasket();
-
-        basket.countSpecialsV2();
-
-        System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей");
 
         basket.isThereProduct("Творожный сырок"); // поиск товара, которого нет в корзине
         basket.isThereProduct("Омлет с ветчиной"); // поиск товара, который есть в корзине
 
         basket.clearBasket(); // очистка корзины
         basket.printBasket(); // печать пустой корзины
-        System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей."); // сумма пустой корзины
+        basket.calculateBasketCost(); // сумма пустой корзины
         basket.isThereProduct("Молоко цельное"); // поиск товара в пустой корзине
     }
 

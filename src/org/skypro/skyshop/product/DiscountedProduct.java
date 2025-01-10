@@ -1,8 +1,5 @@
 package org.skypro.skyshop.product;
 
-import org.skypro.skyshop.exceptions.IncorrectDiscountValueException;
-import org.skypro.skyshop.exceptions.IncorrectPriceValueException;
-
 public class DiscountedProduct extends Product {
     int basePrice;
     int discount;
