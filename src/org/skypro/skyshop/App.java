@@ -8,12 +8,14 @@ import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
+        System.out.println(new TreeSet<>(){{
+            add(new SimpleProduct("Омлет с ветчиной", 70));
+        }});
+
         //inheritance();
         searching();
         //exceptions();
@@ -31,16 +33,16 @@ public class App {
         searchable.addItem(new SimpleProduct("Варенье вишневое", 75));
         searchable.addItem(new DiscountedProduct("Пппирог с малиной", 300, 20));
         searchable.addItem(new Article("Статья про баклажаны", "Описание баклажанов"));
-        //System.out.println(searchable);
+
         System.out.println(searchable.search("а")); // вывожу весь список подходящи результатов
 
         try {
-            System.out.println(searchable.getBestMatch("п")); // лучшее совпадение
+            System.out.println(searchable.getBestMatchV2("п")); // лучшее совпадение
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }
         try {
-            System.out.println(searchable.getBestMatch("Молоко"));
+            System.out.println(searchable.getBestMatchV2("Молоко"));
         } catch (BestResultNotFound e) {
             System.out.println("Поиск не дал результата.");
         }

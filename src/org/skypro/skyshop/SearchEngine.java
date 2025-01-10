@@ -5,7 +5,7 @@ import java.util.*;
 
 public class SearchEngine {
 
-    HashSet<Searchable> searchList;
+    private Set<Searchable> searchList;
 
     public SearchEngine() {
         this.searchList = new HashSet<>();
@@ -15,8 +15,8 @@ public class SearchEngine {
         searchList.add(object);
     }
 
-    public TreeSet<Searchable> search(String searchTerm) {
-        TreeSet<Searchable> results = new TreeSet<>(new SearchableComparator());
+    public Set<Searchable> search(String searchTerm) {
+        Set<Searchable> results = new TreeSet<>(new SearchableComparator());
         for (Searchable object : searchList) {
             if (object.getSearchTerm().toLowerCase().replace(" ", "").
                     contains(searchTerm.toLowerCase().replace(" ", ""))) {
@@ -27,15 +27,15 @@ public class SearchEngine {
     }
 
     public Searchable getBestMatch(String search) throws BestResultNotFound {
-        List<Searchable> objects = new ArrayList<>(searchList);
         String substring = search.replace(" ", "").toLowerCase();
         int countSubstringLast = 0;
-        int resultIndex = -1;
+        Searchable result = null;
 
         Iterator<Searchable> searchlistIterator = searchList.iterator();
         while (searchlistIterator.hasNext()) {
             for (int i = 0; i < searchList.size(); i++) {
-                String text = searchlistIterator.next().getSearchTerm().replace(" ", "").toLowerCase();
+                Searchable searchable = searchlistIterator.next();
+                String text = searchable.getSearchTerm().replace(" ", "").toLowerCase();
                 int counter = 0;
                 int index = 0;
 
@@ -45,14 +45,41 @@ public class SearchEngine {
                 }
                 if (counter > countSubstringLast) {
                     countSubstringLast = counter;
-                    resultIndex = i;
+                    result = searchable;
                 }
             }
-            if (resultIndex == -1) {
+            if (result == null) {
                 throw new BestResultNotFound();
             }
         }
-        return objects.get(resultIndex);
+        return result;
+    }
+
+    public Searchable getBestMatchV2(String search) throws BestResultNotFound {
+        String substring = search.replace(" ", "").toLowerCase();
+        int countSubstringLast = 0;
+        Searchable result = null;
+
+        Iterator<Searchable> searchlistIterator = searchList.iterator();
+        while (searchlistIterator.hasNext()) {
+                Searchable searchable = searchlistIterator.next();
+                String text = searchable.getSearchTerm().replace(" ", "").toLowerCase();
+                int counter = 0;
+                int index = 0;
+
+                while ((index = text.indexOf(substring, index)) != -1) {
+                    counter++;
+                    index = index + substring.length();
+                }
+                if (counter > countSubstringLast) {
+                    countSubstringLast = counter;
+                    result = searchable;
+                }
+        }
+        if (result == null) {
+            throw new BestResultNotFound();
+        }
+        return result;
     }
 
     public String toString() {
