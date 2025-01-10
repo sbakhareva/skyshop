@@ -19,17 +19,6 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String searchTerm) {
-        Set<Searchable> results = new TreeSet<>(new SearchableComparator());
-        for (Searchable object : searchList) {
-            if (object.getSearchTerm().toLowerCase().replace(" ", "").
-                    contains(searchTerm.toLowerCase().replace(" ", ""))) {
-                results.add(object);
-            }
-        }
-        return results;
-    }
-
-    public Set<Searchable> searchV2(String searchTerm) {
         Set<Searchable> results = searchList.stream()
                 .filter(searchable -> searchable.getSearchTerm().toLowerCase().replace(" ", "")
                         .contains(searchTerm.toLowerCase().replace(" ", "")))

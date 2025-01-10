@@ -30,7 +30,7 @@ public class App {
         searchable.addItem(new DiscountedProduct("Пппирог с малиной", 300, 20));
         searchable.addItem(new Article("Статья про баклажаны", "Описание баклажанов"));
 
-        System.out.println(searchable.searchV2("я")); // вывожу весь список подходящи результатов
+        System.out.println(searchable.search("я")); // вывожу весь список подходящи результатов
 
         try {
             System.out.println(searchable.getBestMatch("п")); // лучшее совпадение
