@@ -56,18 +56,6 @@ public class ProductBasket {
         basket.clear();
     }
 
-    public void countSpecials() {
-        int counter = 0;
-        for (List<Product> products : basket.values()) {
-            for (int i = 0; i < products.size(); i++) {
-                if (products.get(i).isSpecial()) {
-                    counter++;
-                }
-            }
-        }
-        System.out.println("\nСпециальных товаров в корзине: " + counter);
-    }
-
     public void countSpecialsV2() {
         int specials = Math.toIntExact(basket.values().stream().flatMap(Collection::stream)
                 .filter(Product::isSpecial)
