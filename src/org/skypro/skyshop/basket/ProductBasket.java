@@ -3,8 +3,6 @@ package org.skypro.skyshop.basket;
 import org.skypro.skyshop.product.Product;
 
 import java.util.*;
-import java.util.function.BiFunction;
-import java.util.stream.Collectors;
 
 public class ProductBasket {
     Map<String, List<Product>> basket;
@@ -83,15 +81,5 @@ public class ProductBasket {
         }
         return deleted;
     }
-
-//    public List<Product> deleteProductV2(String name) {
-//        List<Product> deleted = basket.values().stream().flatMap(Collection::stream)
-//                .filter(product -> product.getProductName().toLowerCase().replace(" ", "")
-//                        .contains(name.toLowerCase().replace(" ", "")))
-//                .collect(Collectors.toCollection((ArrayList::new)));
-//        System.out.println("Продукты удалены: \n" + deleted);
-//        basket.remove(deleted);
-//        return deleted;
-//    }
 }
 
