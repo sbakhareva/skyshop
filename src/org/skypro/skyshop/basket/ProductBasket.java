@@ -65,7 +65,8 @@ public class ProductBasket {
             Iterator<Product> basketIterator = products.iterator();
             while (basketIterator.hasNext()) {
                 Product nextProduct = basketIterator.next();
-                if (nextProduct.getProductName().toLowerCase().replace(" ", "").contains(name.toLowerCase().replace(" ", ""))) {
+                if (nextProduct.getProductName().toLowerCase().replace(" ", "")
+                        .contains(name.toLowerCase().replace(" ", ""))) {
                     productsToRemove.add(nextProduct);
                     basketIterator.remove();
                 }
