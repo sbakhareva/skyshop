@@ -1,8 +1,8 @@
 package org.skypro.skyshop;
+
 import org.skypro.skyshop.exceptions.BestResultNotFound;
+
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 
@@ -19,11 +19,10 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String searchTerm) {
-        Set<Searchable> results = searchList.stream()
+        return searchList.stream()
                 .filter(searchable -> searchable.getSearchTerm().toLowerCase().replace(" ", "")
                         .contains(searchTerm.toLowerCase().replace(" ", "")))
                 .collect(Collectors.toCollection((() -> new TreeSet<>(new SearchableComparator()))));
-        return results;
     }
 
 
@@ -34,19 +33,19 @@ public class SearchEngine {
 
         Iterator<Searchable> searchlistIterator = searchList.iterator();
         while (searchlistIterator.hasNext()) {
-                Searchable searchable = searchlistIterator.next();
-                String text = searchable.getSearchTerm().replace(" ", "").toLowerCase();
-                int counter = 0;
-                int index = 0;
+            Searchable searchable = searchlistIterator.next();
+            String text = searchable.getSearchTerm().replace(" ", "").toLowerCase();
+            int counter = 0;
+            int index = 0;
 
-                while ((index = text.indexOf(substring, index)) != -1) {
-                    counter++;
-                    index = index + substring.length();
-                }
-                if (counter > countSubstringLast) {
-                    countSubstringLast = counter;
-                    result = searchable;
-                }
+            while ((index = text.indexOf(substring, index)) != -1) {
+                counter++;
+                index = index + substring.length();
+            }
+            if (counter > countSubstringLast) {
+                countSubstringLast = counter;
+                result = searchable;
+            }
         }
         if (result == null) {
             throw new BestResultNotFound();
