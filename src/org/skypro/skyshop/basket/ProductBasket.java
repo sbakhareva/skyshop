@@ -19,27 +19,23 @@ public class ProductBasket {
         basket.put(productName, products);
         System.out.println(productName + ": " + price);
     }
-
     public int calculateBasketCost() {
-        int sum = 0;
-        for (List<Product> m : basket.values()) {
-            for (int i = 0; i < m.size(); i++) {
-                int price = m.get(i).getPrice();
-                sum += price;
-            }
-        }
+        int sum = basket.values().stream().flatMap(Collection::stream)
+                .mapToInt(Product::getPrice)
+                .sum();
+        System.out.println("Общая сумма корзины: " + sum);
         return sum;
     }
 
     public void printBasket() {
-        System.out.println("\nТовары в корзине: ");
-        for (Map.Entry<String, List<Product>> m : basket.entrySet()) {
-            System.out.println(m.getValue());
-        }
+        basket.values().stream().flatMap(Collection::stream)
+                .forEach(System.out::println);
     }
 
     public boolean isThereProduct(String productName) {
-        if (basket.containsKey(productName)) {
+        if (basket.isEmpty()) {
+            System.out.println("Корзина пуста!");
+        } else if (basket.containsKey(productName)) {
             System.out.println("\nТовар '" + productName + "' есть в корзине.");
             return true;
         } else {
@@ -54,15 +50,10 @@ public class ProductBasket {
     }
 
     public void countSpecials() {
-        int counter = 0;
-        for (List<Product> products : basket.values()) {
-            for (int i = 0; i < products.size(); i++) {
-                if (products.get(i).isSpecial()) {
-                    counter++;
-                }
-            }
-        }
-        System.out.println("\nСпециальных товаров в корзине: " + counter);
+        int specials = Math.toIntExact(basket.values().stream().flatMap(Collection::stream)
+                .filter(Product::isSpecial)
+                .count());
+        System.out.println("\nСпециальных товаров в корзине: " + specials);
     }
 
     public List<Product> deleteProduct(String name) {
@@ -85,7 +76,7 @@ public class ProductBasket {
         if (deleted.isEmpty()) {
             System.out.println("Список удаленных продуктов пуст.");
         } else {
-            System.out.println("\nПродукты удалены :");
+            System.out.println("\nПродукты удалены: ");
             System.out.println(deleted);
         }
         return deleted;

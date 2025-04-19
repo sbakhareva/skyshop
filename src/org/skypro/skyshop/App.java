@@ -12,8 +12,8 @@ import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-        //inheritance();
-        searching();
+        inheritance();
+        //searching();
         //exceptions();
     }
 
@@ -30,7 +30,7 @@ public class App {
         searchable.addItem(new DiscountedProduct("Пппирог с малиной", 300, 20));
         searchable.addItem(new Article("Статья про баклажаны", "Описание баклажанов"));
 
-        System.out.println(searchable.search("а")); // вывожу весь список подходящи результатов
+        System.out.println(searchable.search("я")); // вывожу весь список подходящи результатов
 
         try {
             System.out.println(searchable.getBestMatch("п")); // лучшее совпадение
@@ -57,18 +57,18 @@ public class App {
         basket.addProduct(discountedProduct); // уцененный продукт
         basket.printBasket();
         basket.deleteProduct("вафли");
-        basket.printBasket();
-
+        basket.calculateBasketCost();
         basket.countSpecials();
 
-        System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей");
+        basket.deleteProduct("омлет");
+        basket.printBasket();
 
         basket.isThereProduct("Творожный сырок"); // поиск товара, которого нет в корзине
         basket.isThereProduct("Омлет с ветчиной"); // поиск товара, который есть в корзине
 
         basket.clearBasket(); // очистка корзины
         basket.printBasket(); // печать пустой корзины
-        System.out.println("Общая стоимость корзины: " + basket.calculateBasketCost() + " рублей."); // сумма пустой корзины
+        basket.calculateBasketCost(); // сумма пустой корзины
         basket.isThereProduct("Молоко цельное"); // поиск товара в пустой корзине
     }
 

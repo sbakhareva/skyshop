@@ -1,7 +1,5 @@
 package org.skypro.skyshop;
 
-import java.util.Comparator;
-
 public interface Searchable {
     String getSearchTerm();
 
